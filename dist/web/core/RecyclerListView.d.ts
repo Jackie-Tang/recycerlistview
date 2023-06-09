@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ViewStyle } from "react-native";
 import ContextProvider from "./dependencies/ContextProvider";
 import { BaseDataProvider } from "./dependencies/DataProvider";
 import { Dimension, BaseLayoutProvider } from "./dependencies/LayoutProvider";
@@ -71,6 +72,7 @@ export interface RecyclerListViewProps {
         applyToItemScroll?: boolean;
     };
     suppressBoundedSizeException?: boolean;
+    listContainerStyle?: ViewStyle;
 }
 export interface RecyclerListViewState {
     renderStack: RenderStack;
