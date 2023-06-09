@@ -49,7 +49,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var debounce = require("lodash.debounce");
 var PropTypes = require("prop-types");
 var React = require("react");
-var react_native_1 = require("react-native");
 var ts_object_utils_1 = require("ts-object-utils");
 var ContextProvider_1 = require("./dependencies/ContextProvider");
 var DataProvider_1 = require("./dependencies/DataProvider");
@@ -407,10 +406,7 @@ var RecyclerListView = /** @class */ (function (_super) {
         //     ...props,
         // } = this.props;
         var _this = this;
-        var _a;
-        return (React.createElement(ScrollComponent_1.default, __assign({ ref: function (scrollComponent) { return _this._scrollComponent = scrollComponent; } }, this.props, this.props.scrollViewProps, { onScroll: this._onScroll, onSizeChanged: this._onSizeChanged, contentHeight: this._initComplete ? this._virtualRenderer.getLayoutDimension().height : 0, contentWidth: this._initComplete ? this._virtualRenderer.getLayoutDimension().width : 0, renderAheadOffset: this.getCurrentRenderAheadOffset() }),
-            this.props.renderHeader && this.props.renderHeader(),
-            React.createElement(react_native_1.View, { style: ((_a = this.props) === null || _a === void 0 ? void 0 : _a.listContainerStyle) || null }, this._generateRenderStack())));
+        return (React.createElement(ScrollComponent_1.default, __assign({ ref: function (scrollComponent) { return _this._scrollComponent = scrollComponent; } }, this.props, this.props.scrollViewProps, { onScroll: this._onScroll, onSizeChanged: this._onSizeChanged, contentHeight: this._initComplete ? this._virtualRenderer.getLayoutDimension().height : 0, contentWidth: this._initComplete ? this._virtualRenderer.getLayoutDimension().width : 0, renderAheadOffset: this.getCurrentRenderAheadOffset() }), this._generateRenderStack()));
     };
     // Disables recycling for the next frame so that layout animations run well.
     // WARNING: Avoid this when making large changes to the data as the list might draw too much to run animations. Single item insertions/deletions
@@ -622,7 +618,11 @@ var RecyclerListView = /** @class */ (function (_super) {
         }
     };
     RecyclerListView.prototype._generateRenderStack = function () {
+        var _a;
         var renderedItems = [];
+        if ((_a = this.props) === null || _a === void 0 ? void 0 : _a.renderHeader) {
+            renderedItems.push(this.props.renderHeader());
+        }
         if (this.state) {
             for (var key in this.state.renderStack) {
                 if (this.state.renderStack.hasOwnProperty(key)) {

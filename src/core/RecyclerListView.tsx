@@ -21,7 +21,6 @@
 import debounce = require("lodash.debounce");
 import * as PropTypes from "prop-types";
 import * as React from "react";
-import {View, ViewStyle} from "react-native";
 import { ObjectUtil, Default } from "ts-object-utils";
 import ContextProvider from "./dependencies/ContextProvider";
 import { BaseDataProvider } from "./dependencies/DataProvider";
@@ -120,7 +119,6 @@ export interface RecyclerListViewProps {
     //If set to true, recyclerlistview will not measure itself if scrollview mounts with zero height or width.
     //If there are no following events with right dimensions nothing will be rendered.
     suppressBoundedSizeException?: boolean;
-    listContainerStyle?: ViewStyle;
 }
 
 export interface RecyclerListViewState {
@@ -743,8 +741,8 @@ export default class RecyclerListView<P extends RecyclerListViewProps, S extends
 
     private _generateRenderStack(): Array<JSX.Element | null> {
         const renderedItems = [];
-        if (this.props.renderHeader) {
-            renderedItems.push(this.props?.renderHeader?.() || null)
+        if (this.props?.renderHeader) {
+            renderedItems.push(this.props.renderHeader());
         }
         if (this.state) {
             for (const key in this.state.renderStack) {
