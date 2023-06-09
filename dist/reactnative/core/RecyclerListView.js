@@ -49,6 +49,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var debounce = require("lodash.debounce");
 var PropTypes = require("prop-types");
 var React = require("react");
+var react_native_1 = require("react-native");
 var ts_object_utils_1 = require("ts-object-utils");
 var ContextProvider_1 = require("./dependencies/ContextProvider");
 var DataProvider_1 = require("./dependencies/DataProvider");
@@ -63,8 +64,8 @@ var ComponentCompat_1 = require("../utils/ComponentCompat");
 //#if [REACT-NATIVE]
 var ScrollComponent_1 = require("../platform/reactnative/scrollcomponent/ScrollComponent");
 var ViewRenderer_1 = require("../platform/reactnative/viewrenderer/ViewRenderer");
-var react_native_1 = require("react-native");
-var IS_WEB = !react_native_1.Platform || react_native_1.Platform.OS === "web";
+var react_native_2 = require("react-native");
+var IS_WEB = !react_native_2.Platform || react_native_2.Platform.OS === "web";
 var RecyclerListView = /** @class */ (function (_super) {
     __extends(RecyclerListView, _super);
     function RecyclerListView(props, context) {
@@ -398,8 +399,8 @@ var RecyclerListView = /** @class */ (function (_super) {
         // } = this.props;
         var _this = this;
         return (React.createElement(ScrollComponent_1.default, __assign({ ref: function (scrollComponent) { return _this._scrollComponent = scrollComponent; } }, this.props, this.props.scrollViewProps, { onScroll: this._onScroll, onSizeChanged: this._onSizeChanged, contentHeight: this._initComplete ? this._virtualRenderer.getLayoutDimension().height : 0, contentWidth: this._initComplete ? this._virtualRenderer.getLayoutDimension().width : 0, renderAheadOffset: this.getCurrentRenderAheadOffset() }),
-            this.props.renderHeader && this.props.renderHeader(),
-            this._generateRenderStack()));
+            this.props.renderHeader,
+            React.createElement(react_native_1.View, { style: { flex: 1 } }, this._generateRenderStack())));
     };
     // Disables recycling for the next frame so that layout animations run well.
     // WARNING: Avoid this when making large changes to the data as the list might draw too much to run animations. Single item insertions/deletions

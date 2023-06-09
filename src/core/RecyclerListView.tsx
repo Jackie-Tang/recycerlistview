@@ -21,6 +21,7 @@
 import debounce = require("lodash.debounce");
 import * as PropTypes from "prop-types";
 import * as React from "react";
+import {View} from "react-native";
 import { ObjectUtil, Default } from "ts-object-utils";
 import ContextProvider from "./dependencies/ContextProvider";
 import { BaseDataProvider } from "./dependencies/DataProvider";
@@ -425,8 +426,10 @@ export default class RecyclerListView<P extends RecyclerListViewProps, S extends
                 contentHeight={this._initComplete ? this._virtualRenderer.getLayoutDimension().height : 0}
                 contentWidth={this._initComplete ? this._virtualRenderer.getLayoutDimension().width : 0}
                 renderAheadOffset={this.getCurrentRenderAheadOffset()}>
-                {this.props.renderHeader && this.props.renderHeader()}
-                {this._generateRenderStack()}
+                {this.props.renderHeader}
+                <View style={{flex: 1}}>
+                    {this._generateRenderStack()}
+                </View>
             </ScrollComponent>
         );
     }
