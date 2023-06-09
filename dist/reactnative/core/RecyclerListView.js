@@ -609,11 +609,7 @@ var RecyclerListView = /** @class */ (function (_super) {
         }
     };
     RecyclerListView.prototype._generateRenderStack = function () {
-        var _a;
         var renderedItems = [];
-        if ((_a = this.props) === null || _a === void 0 ? void 0 : _a.renderHeader) {
-            renderedItems.push(this.props.renderHeader());
-        }
         if (this.state) {
             for (var key in this.state.renderStack) {
                 if (this.state.renderStack.hasOwnProperty(key)) {
@@ -698,7 +694,6 @@ RecyclerListView.propTypes = {
     onVisibleIndicesChanged: PropTypes.func,
     //Provide this method if you want to render a footer. Helpful in showing a loader while doing incremental loads.
     renderFooter: PropTypes.func,
-    renderHeader: PropTypes.func,
     //Specify the initial item index you want rendering to start from. Preferred over initialOffset if both are specified.
     initialRenderIndex: PropTypes.number,
     //Specify the estimated size of the recyclerlistview to render the list items in the first pass. If provided, recyclerlistview will

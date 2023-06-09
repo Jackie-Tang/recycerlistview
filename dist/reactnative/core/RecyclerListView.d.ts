@@ -46,7 +46,6 @@ export interface RecyclerListViewProps {
     onVisibleIndexesChanged?: TOnItemStatusChanged;
     onVisibleIndicesChanged?: TOnItemStatusChanged;
     renderFooter?: () => JSX.Element | JSX.Element[] | null;
-    renderHeader?: () => JSX.Element | null;
     externalScrollView?: {
         new (props: ScrollViewDefaultProps): BaseScrollView;
     };
