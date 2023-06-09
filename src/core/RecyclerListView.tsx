@@ -92,7 +92,7 @@ export interface RecyclerListViewProps {
     onVisibleIndexesChanged?: TOnItemStatusChanged;
     onVisibleIndicesChanged?: TOnItemStatusChanged;
     renderFooter?: () => JSX.Element | JSX.Element[] | null;
-    renderHeader?: () => JSX.Element | JSX.Element[] | null;
+    renderHeader?: () => JSX.Element | null;
     externalScrollView?: { new(props: ScrollViewDefaultProps): BaseScrollView };
     layoutSize?: Dimension;
     initialOffset?: number;
@@ -427,10 +427,7 @@ export default class RecyclerListView<P extends RecyclerListViewProps, S extends
                 contentHeight={this._initComplete ? this._virtualRenderer.getLayoutDimension().height : 0}
                 contentWidth={this._initComplete ? this._virtualRenderer.getLayoutDimension().width : 0}
                 renderAheadOffset={this.getCurrentRenderAheadOffset()}>
-                {this.props.renderHeader && this.props.renderHeader()}
-                <View style={this.props?.listContainerStyle || null}>
-                    {this._generateRenderStack()}
-                </View>
+                {this._generateRenderStack()}
             </ScrollComponent>
         );
     }
@@ -746,6 +743,9 @@ export default class RecyclerListView<P extends RecyclerListViewProps, S extends
 
     private _generateRenderStack(): Array<JSX.Element | null> {
         const renderedItems = [];
+        if (this.props.renderHeader) {
+            renderedItems.push(this.props?.renderHeader?.() || null)
+        }
         if (this.state) {
             for (const key in this.state.renderStack) {
                 if (this.state.renderStack.hasOwnProperty(key)) {
