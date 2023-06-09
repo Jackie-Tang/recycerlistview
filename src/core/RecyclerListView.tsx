@@ -426,7 +426,7 @@ export default class RecyclerListView<P extends RecyclerListViewProps, S extends
                 contentHeight={this._initComplete ? this._virtualRenderer.getLayoutDimension().height : 0}
                 contentWidth={this._initComplete ? this._virtualRenderer.getLayoutDimension().width : 0}
                 renderAheadOffset={this.getCurrentRenderAheadOffset()}>
-                {this.props.renderHeader}
+                {this.props.renderHeader && this.props.renderHeader()}
                 <View style={{flex: 1}}>
                     {this._generateRenderStack()}
                 </View>

@@ -399,7 +399,7 @@ var RecyclerListView = /** @class */ (function (_super) {
         // } = this.props;
         var _this = this;
         return (React.createElement(ScrollComponent_1.default, __assign({ ref: function (scrollComponent) { return _this._scrollComponent = scrollComponent; } }, this.props, this.props.scrollViewProps, { onScroll: this._onScroll, onSizeChanged: this._onSizeChanged, contentHeight: this._initComplete ? this._virtualRenderer.getLayoutDimension().height : 0, contentWidth: this._initComplete ? this._virtualRenderer.getLayoutDimension().width : 0, renderAheadOffset: this.getCurrentRenderAheadOffset() }),
-            this.props.renderHeader,
+            this.props.renderHeader && this.props.renderHeader(),
             React.createElement(react_native_1.View, { style: { flex: 1 } }, this._generateRenderStack())));
     };
     // Disables recycling for the next frame so that layout animations run well.
